@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { products, gauntletRoadmap } from "@/lib/data";
+import { products } from "@/lib/data";
 
 export default function Services() {
   return (
@@ -45,12 +45,25 @@ export default function Services() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="py-8 border-b border-white/5"
               >
-                <h3 className="font-serif text-3xl text-white mb-2">
-                  {product.name}
-                </h3>
-                <span className="font-mono text-xs text-amber-400">
-                  {product.status}
-                </span>
+                <div className="flex items-baseline gap-3 mb-2">
+                  <h3 className="font-serif text-3xl text-white">
+                    {product.link ? (
+                      <a
+                        href={product.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        {product.name}
+                      </a>
+                    ) : (
+                      product.name
+                    )}
+                  </h3>
+                  <span className="font-mono text-xs text-amber-400">
+                    {product.status}
+                  </span>
+                </div>
                 <p className="font-sans text-text-secondary text-lg mt-3 mb-4">
                   {product.description}
                 </p>
@@ -73,10 +86,26 @@ export default function Services() {
               The Gauntlet
             </h3>
             <p className="font-sans text-text-secondary mb-4">
-              The product roadmap.
+              The product roadmap — each one a real product, not a pitch deck slide.
             </p>
-            <p className="font-mono text-sm text-amber-400">
-              {gauntletRoadmap.map((item) => item.name).join(" → ")}
+            <div className="flex flex-wrap items-center gap-2 font-mono text-sm">
+              <a
+                href="https://teemates.ca"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400 hover:text-amber-300 transition-colors"
+              >
+                Teemates
+              </a>
+              <span className="text-text-muted">→</span>
+              <span className="text-text-muted">Indoor Tour</span>
+              <span className="text-text-muted">→</span>
+              <span className="text-text-muted">Tabletop Sherpa</span>
+              <span className="text-text-muted">→</span>
+              <span className="text-text-muted">Clawvatar.ai</span>
+            </div>
+            <p className="font-sans text-xs text-text-muted mt-3">
+              Teemates is live. The rest are in the queue.
             </p>
           </motion.div>
 

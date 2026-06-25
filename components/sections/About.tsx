@@ -17,6 +17,10 @@ const contentBlocks = [
     title: "Real Research",
     body: "SATG (Surface-Aware Tool Governance) — a research preprint on runtime authorization for multi-agent systems. Not a blog post. An actual contribution.",
   },
+  {
+    title: "Shipping Real Products",
+    body: "TeeMates — a social golf app — is live in beta at teemates.ca. Lyra, a multi-agent drug discovery system, was built on Microsoft Foundry. Not concepts. Things with users.",
+  },
 ];
 
 function FadeIn({ children, className }: { children: React.ReactNode; className?: string }) {

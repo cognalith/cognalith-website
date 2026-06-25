@@ -164,6 +164,7 @@ export interface Product {
   tags: string[];
   color: string;
   status: string;
+  link?: string;
 }
 
 export const products: Product[] = [
@@ -173,7 +174,8 @@ export const products: Product[] = [
       "Social golf app for finding playing partners. Built with React Native, powered by the Monolith System.",
     tags: ["React Native", "Supabase", "MVP"],
     color: "from-green-600 to-emerald-500",
-    status: "Coming Spring 2026",
+    status: "Now in Beta",
+    link: "https://teemates.ca",
   },
   {
     name: "Lyra",
@@ -182,6 +184,7 @@ export const products: Product[] = [
     tags: ["AlphaFold", "Multi-Agent", "Drug Discovery"],
     color: "from-blue-500 to-cyan-500",
     status: "Microsoft Foundry",
+    link: "https://github.com/cognalith/lyra-protein-reasoning",
   },
   {
     name: "Agents League Coach",
@@ -254,6 +257,18 @@ export const timeline: TimelineEntry[] = [
     title: "SATG Research Published",
     description:
       "Released the Surface-Aware Tool Governance preprint — runtime authorization for multi-agent systems.",
+  },
+  {
+    date: "Apr 2026",
+    title: "TeeMates Beta Launches",
+    description:
+      "Golf social app goes live on teemates.ca with founding members signup. Admin portal deployed, founders program started.",
+  },
+  {
+    date: "Jun 2026",
+    title: "App Store & Android Builds",
+    description:
+      "iOS build 72 submitted to App Store. Android AAB built via EAS. Marketing plan drafted — league strategy, Meta ads, 500 founders analysis.",
   },
 ];
 

@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     if (!process.env.RESEND_API_KEY) {
       console.error("RESEND_API_KEY not configured");
       return NextResponse.json(
-        { error: "Email service not configured. Please contact us directly at hello@cognalith.ca" },
+        { error: "Email service not configured. Please contact me directly at frank@cognalith.ca" },
         { status: 503 }
       );
     }
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     // Send email to Cognalith
     await resend.emails.send({
       from: "Cognalith Contact <onboarding@resend.dev>",
-      to: ["hello@cognalith.ca"],
+      to: ["frank@cognalith.ca"],
       replyTo: email,
       subject: `New Contact Form: ${name}${company ? ` from ${company}` : ""}`,
       html: `
@@ -58,10 +58,10 @@ export async function POST(request: NextRequest) {
       subject: "Thanks for reaching out to Cognalith!",
       html: `
         <h2>Hi ${name},</h2>
-        <p>Thanks for reaching out! We've received your message and will get back to you within 24-48 hours.</p>
-        <p>In the meantime, feel free to check out our <a href="https://cognalith.ca">website</a> to learn more about the Monolith System.</p>
+        <p>Thanks for reaching out! I've received your message and will get back to you within 24-48 hours.</p>
+        <p>In the meantime, feel free to check out the <a href="https://cognalith.ca">website</a> to learn more about what I'm building.</p>
         <br />
-        <p>Best,<br />The Cognalith Team</p>
+        <p>Best,<br />Frank</p>
         <hr />
         <p style="color: #666; font-size: 12px;">This is an automated response. Please don't reply to this email.</p>
       `,

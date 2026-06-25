@@ -78,7 +78,11 @@ const jsonLd = {
     contactType: "General",
     availableLanguage: ["English"],
   },
-  sameAs: [],
+  sameAs: [
+    "https://github.com/cognalith",
+    "https://www.linkedin.com/in/franktinana",
+    "https://x.com/franktinana",
+  ],
   founder: {
     "@type": "Person",
     name: "Frank Tinana",

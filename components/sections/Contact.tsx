@@ -136,7 +136,8 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting || isSubmitted}
-              className="px-8 py-3 bg-amber text-dark-bg font-sans font-medium hover:bg-amber-light transition-colors disabled:opacity-50"
+              className="px-8 py-3 bg-amber text-dark font-sans font-medium tracking-wide hover:bg-amber-light transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border-0 cursor-pointer"
+              style={{ backgroundColor: isSubmitting || isSubmitted ? undefined : "#F6AD55" }}
             >
               {isSubmitting
                 ? "Sending..."
