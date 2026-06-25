@@ -98,14 +98,14 @@ export default function Services() {
                 Teemates
               </a>
               <span className="text-text-muted">→</span>
-              <span className="text-text-muted">Indoor Tour</span>
+              <span className="text-text-muted">SiteCall</span>
               <span className="text-text-muted">→</span>
-              <span className="text-text-muted">Tabletop Sherpa</span>
+              <span className="text-text-muted">Robot Simulator</span>
               <span className="text-text-muted">→</span>
-              <span className="text-text-muted">Clawvatar.ai</span>
+              <span className="text-text-muted">Indoor Tour (Fall 2026)</span>
             </div>
             <p className="font-sans text-xs text-text-muted mt-3">
-              Teemates is live. The rest are in the queue.
+              Teemates is live. SiteCall is next.
             </p>
           </motion.div>
 

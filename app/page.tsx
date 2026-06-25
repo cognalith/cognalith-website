@@ -1,6 +1,5 @@
 import HeroEnhanced from "@/components/sections/HeroEnhanced";
 import About from "@/components/sections/About";
-import NeuralShowcase from "@/components/sections/NeuralShowcase";
 import Services from "@/components/sections/Services";
 import MonolithSystem from "@/components/sections/MonolithSystem";
 import HowItWorks from "@/components/sections/HowItWorks";
@@ -12,7 +11,6 @@ export default function Home() {
     <>
       <HeroEnhanced />
       <About />
-      <NeuralShowcase />
       <Services />
       <MonolithSystem />
       <HowItWorks />

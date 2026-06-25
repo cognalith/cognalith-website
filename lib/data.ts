@@ -22,7 +22,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-// Campus Entity Agents
+// Campus Entity Agents (not displayed on site, kept for reference)
 export interface CampusAgent {
   name: string;
   role: string;
@@ -210,19 +210,19 @@ export const gauntletRoadmap: GauntletItem[] = [
     icon: Users,
   },
   {
+    name: "SiteCall",
+    description: "AI receptionist for trades — answer, qualify, book",
+    icon: Zap,
+  },
+  {
+    name: "Robot Simulator",
+    description: "Robotics simulation and training platform",
+    icon: Brain,
+  },
+  {
     name: "Indoor Tour",
-    description: "Sim golf league management platform",
+    description: "Sim golf league management platform — Fall 2026",
     icon: Trophy,
-  },
-  {
-    name: "Tabletop Sherpa",
-    description: "Board game companion and rules assistant",
-    icon: Gamepad2,
-  },
-  {
-    name: "Clawvatar.ai",
-    description: "AI-powered avatar and identity system",
-    icon: Sparkles,
   },
 ];
 
@@ -275,7 +275,6 @@ export const timeline: TimelineEntry[] = [
 // Navigation links
 export const navLinks = [
   { href: "#story", label: "The Story" },
-  { href: "#campus", label: "The Campus" },
   { href: "#forge", label: "The Forge" },
   { href: "#building", label: "What We're Building" },
   { href: "#timeline", label: "Timeline" },

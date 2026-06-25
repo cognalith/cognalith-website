@@ -10,8 +10,8 @@ const contentBlocks = [
     body: "Founded January 5th, 2026. By January 17th: AI dashboard deployed, mobile app in App Store review, full architecture documented. One person.",
   },
   {
-    title: "The Entity Agents",
-    body: "Not just chatbots. Persistent AI entities with memory, personality, and specialized roles. Alice designs agents. LOIS writes journalism. Aria manages my life.",
+    title: "The Agent Architecture",
+    body: "Not just chatbots. Persistent AI entities with memory, personality, and specialized roles — running the infrastructure behind every product. Built on the Neural Stack, BAMS memory, and SATG governance.",
   },
   {
     title: "Real Research",
