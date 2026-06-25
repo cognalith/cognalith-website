@@ -1,0 +1,11 @@
+# Robots.txt for Cognalith
+# https://cognalith.ca
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://cognalith.ca/sitemap.xml
+
+# Disallow development/admin paths (if any in future)
+Disallow: /api/

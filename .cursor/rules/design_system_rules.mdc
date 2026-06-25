@@ -1,0 +1,473 @@
+---
+alwaysApply: false
+---
+## 2. Component Library
+
+### Location
+
+```
+cognalith-website/
+├── components/
+│   ├── ui/              # Reusable primitives
+│   │   ├── Button.tsx   # Primary, secondary, outline variants
+│   │   ├── Card.tsx     # Animated card wrapper
+│   │   └── Container.tsx # Max-width layout wrapper
+│   ├── sections/        # Page sections
+│   │   ├── Hero.tsx
+│   │   ├── HeroEnhanced.tsx
+│   │   ├── AIAgents.tsx
+│   │   ├── Services.tsx
+│   │   └── ...
+│   └── animations/      # Animation components
+│       ├── NeuralNetwork.tsx
+│       ├── ParticleField.tsx
+│       └── FloatingMonolith.tsx
+```
+
+### Component Architecture
+
+All components follow this pattern:
+
+```tsx
+"use client"; // Required for framer-motion
+
+import { motion } from "framer-motion";
+
+interface ComponentProps {
+  children: React.ReactNode;
+  className?: string;
+  // variant props
+}
+
+export default function Component({ children, className = "" }: ComponentProps) {
+  return (
+    <motion.div className={`base-styles ${className}`}>
+      {children}
+    </motion.div>
+  );
+}
+```
+
+### Core UI Components
+
+#### Button
+
+```tsx
+import Button from "@/components/ui/Button";
+
+// Variants
+<Button variant="primary">CTA</Button>    // Gradient cyan-purple
+<Button variant="secondary">Action</Button> // Dark card background
+<Button variant="outline">Link</Button>    // Cyan border
+
+// Sizes
+<Button size="sm">Small</Button>   // px-4 py-2
+<Button size="md">Medium</Button>  // px-6 py-3 (default)
+<Button size="lg">Large</Button>   // px-8 py-4
+```
+
+#### Card
+
+```tsx
+import Card from "@/components/ui/Card";
+
+<Card hover={true}>  // Animated lift on hover
+  <h3>Title</h3>
+  <p>Content</p>
+</Card>
+```
+
+#### Container
+
+```tsx
+import Container from "@/components/ui/Container";
+
+<Container className="py-20">
+  {/* Max-width 7xl, responsive padding */}
+</Container>
+```
+
+---
+
+## 3. Frameworks & Libraries
+
+### Core Dependencies
+
+```json
+{
+  "next": "^14.2.0",         // App Router, Server Components
+  "react": "^18.3.0",        // React 18 with hooks
+  "react-dom": "^18.3.0",
+  "framer-motion": "^11.0.0", // Animations
+  "lucide-react": "^0.400.0"  // Icons
+}
+```
+
+### Dev Dependencies
+
+```json
+{
+  "typescript": "^5.0.0",
+  "tailwindcss": "^3.4.0",
+  "autoprefixer": "^10.4.0",
+  "postcss": "^8.4.0",
+  "eslint": "^8.0.0",
+  "eslint-config-next": "^14.2.0"
+}
+```
+
+### Build System
+
+- **Bundler:** Next.js built-in (Webpack/Turbopack)
+- **CSS Processing:** PostCSS + Tailwind
+- **TypeScript:** Strict mode enabled
+
+---
+
+## 4. Asset Management
+
+### Directory Structure
+
+```
+cognalith-website/public/
+├── favicon.svg          # SVG favicon
+├── og-image.png         # Open Graph image (1200x630)
+├── og-image.svg         # Source SVG
+├── robots.txt           # SEO
+├── sitemap.xml          # SEO
+└── images/              # Static images
+```
+
+### Asset Usage
+
+```tsx
+// Static imports (recommended for Next.js optimization)
+import Image from "next/image";
+
+<Image
+  src="/images/hero.png"
+  alt="Description"
+  width={800}
+  height={600}
+  priority // For above-fold images
+/>
+
+// Or direct paths
+<img src="/favicon.svg" alt="Logo" />
+```
+
+### Image Optimization
+
+- Use `next/image` for automatic optimization
+- SVG for icons and logos
+- WebP/PNG for photos with `priority` prop for LCP images
+- OG images: 1200x630px PNG
+
+---
+
+## 5. Icon System
+
+### Library
+
+**Lucide React** - https://lucide.dev
+
+### Import Pattern
+
+```tsx
+import {
+  ArrowRight,
+  Sparkles,
+  Brain,
+  Code,
+  Shield
+} from "lucide-react";
+```
+
+### Usage Pattern
+
+```tsx
+// Inline with text
+<span className="flex items-center gap-2">
+  <Sparkles className="w-4 h-4 text-accent-cyan" />
+  Label
+</span>
+
+// In buttons
+<Button>
+  Next <ArrowRight className="ml-2 w-5 h-5" />
+</Button>
+
+// Colored icons
+<Brain className="w-6 h-6" style={{ color: "#00d4ff" }} />
+```
+
+### Size Convention
+
+| Usage | Class | Size |
+|-------|-------|------|
+| Inline text | `w-4 h-4` | 16px |
+| Buttons | `w-5 h-5` | 20px |
+| Cards | `w-6 h-6` | 24px |
+| Features | `w-7 h-7` | 28px |
+| Hero | `w-8 h-8` | 32px |
+
+### Icon Naming
+
+Use semantic names from Lucide. Common mappings:
+- AI/Brain → `Brain`
+- Code/Dev → `Code`
+- Security → `Shield`
+- Arrow → `ArrowRight`, `ChevronRight`
+- Stars/Special → `Sparkles`, `Star`
+
+---
+
+## 6. Styling Approach
+
+### Methodology
+
+**Tailwind CSS** with utility-first approach + custom CSS classes in `globals.css`.
+
+### CSS Layers
+
+```css
+/* app/globals.css */
+
+@layer base {
+  /* Reset and base styles */
+  body {
+    @apply bg-dark text-text-primary font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Reusable component classes */
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-cyan
+           bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: gradient 3s linear infinite;
+  }
+
+  .glow-border { /* ... */ }
+  .card-hover { /* ... */ }
+}
+
+@layer utilities {
+  /* Custom utilities */
+  .perspective-1000 { perspective: 1000px; }
+  .preserve-3d { transform-style: preserve-3d; }
+}
+```
+
+### Custom Component Classes
+
+| Class | Usage |
+|-------|-------|
+| `.gradient-text` | Animated gradient text |
+| `.glow-border` | Glowing border effect |
+| `.card-hover` | Hover lift animation |
+| `.perspective-1000` | 3D perspective container |
+| `.preserve-3d` | 3D child preservation |
+
+### Responsive Breakpoints
+
+Tailwind defaults:
+- `sm:` → 640px
+- `md:` → 768px
+- `lg:` → 1024px
+- `xl:` → 1280px
+- `2xl:` → 1536px
+
+**Usage Pattern:**
+```tsx
+<h1 className="text-4xl sm:text-5xl lg:text-7xl">
+  Responsive Headline
+</h1>
+```
+
+### Animation Classes
+
+```typescript
+// tailwind.config.ts
+animation: {
+  "fade-in": "fadeIn 0.5s ease-out",
+  "slide-up": "slideUp 0.5s ease-out",
+  "pulse-slow": "pulse 3s ease-in-out infinite",
+  "glow": "glow 2s ease-in-out infinite",
+}
+```
+
+---
+
+## 7. Project Structure
+
+```
+cognalith-website/
+├── app/                    # Next.js App Router
+│   ├── globals.css         # Global styles
+│   ├── layout.tsx          # Root layout with metadata
+│   └── page.tsx            # Home page
+├── components/
+│   ├── ui/                 # Primitives (Button, Card, Container)
+│   ├── sections/           # Page sections
+│   ├── animations/         # Canvas/motion components
+│   └── Navbar.tsx          # Navigation
+├── lib/
+│   └── data.ts             # Static data (agents, features, etc.)
+├── public/                 # Static assets
+├── remotion/               # Video compositions (excluded from build)
+│   ├── Root.tsx
+│   └── compositions/
+├── tailwind.config.ts      # Design tokens
+├── tsconfig.json           # TypeScript config
+└── package.json
+```
+
+### File Naming Conventions
+
+- Components: `PascalCase.tsx` (e.g., `HeroEnhanced.tsx`)
+- Utilities: `camelCase.ts` (e.g., `data.ts`)
+- Sections: Named by content (e.g., `AIAgents.tsx`, `Services.tsx`)
+
+### Import Aliases
+
+```typescript
+// tsconfig.json
+"paths": {
+  "@/*": ["./*"]
+}
+
+// Usage
+import Button from "@/components/ui/Button";
+import { features } from "@/lib/data";
+```
+
+---
+
+## 8. Figma MCP Integration Guidelines
+
+### When Importing from Figma
+
+1. **Extract Colors**: Map Figma color styles to `accent-*`, `dark-*`, `text-*` tokens
+2. **Extract Typography**: Use closest Tailwind text size, not custom values
+3. **Extract Spacing**: Round to 4px grid (Tailwind's spacing scale)
+4. **Extract Components**: Create in `components/ui/` if reusable
+
+### Component Mapping Rules
+
+| Figma Component | React Component |
+|-----------------|-----------------|
+| Button/Primary | `<Button variant="primary">` |
+| Button/Secondary | `<Button variant="secondary">` |
+| Button/Ghost | `<Button variant="outline">` |
+| Card | `<Card>` |
+| Container | `<Container>` |
+| Icon/* | `<IconName />` from lucide-react |
+
+### Animation Guidelines
+
+Use Framer Motion for all animations:
+
+```tsx
+import { motion } from "framer-motion";
+
+// Entrance animation
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5 }}
+>
+
+// Hover animation
+<motion.div
+  whileHover={{ scale: 1.02, y: -5 }}
+  whileTap={{ scale: 0.98 }}
+>
+```
+
+### Section Template
+
+```tsx
+"use client";
+
+import { motion } from "framer-motion";
+import Container from "@/components/ui/Container";
+
+export default function SectionName() {
+  return (
+    <section id="section-id" className="py-32 relative">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark-secondary to-dark" />
+
+      <Container className="relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-accent-cyan text-sm tracking-wider uppercase">
+            Section Label
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-bold mt-4">
+            Section <span className="gradient-text">Title</span>
+          </h2>
+        </motion.div>
+
+        {/* Content */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Items */}
+        </div>
+      </Container>
+    </section>
+  );
+}
+```
+
+---
+
+## 9. Quick Reference
+
+### Color Palette (Copy-Paste Ready)
+
+```
+Background Default: #0a0a0f
+Background Secondary: #0d0d12
+Background Tertiary: #13131a
+Background Card: #1a1a24
+Accent Cyan: #00d4ff
+Accent Purple: #a855f7
+Accent Green: #00ff88
+Text Primary: #ffffff
+Text Secondary: #a1a1aa
+Text Muted: #71717a
+```
+
+### Common Class Combinations
+
+```tsx
+// Section header
+"text-4xl sm:text-5xl font-bold"
+
+// Section label
+"text-accent-cyan text-sm font-medium tracking-wider uppercase"
+
+// Body text
+"text-text-secondary text-lg leading-relaxed"
+
+// Card
+"bg-dark-card border border-white/5 rounded-xl p-6"
+
+// Gradient button
+"bg-gradient-to-r from-accent-cyan to-accent-purple"
+
+// Glow effect
+"shadow-lg shadow-accent-cyan/20"
+```
+
+---
+
+*Last Updated: 2026-01-23 | Cognalith Website v1.0*
